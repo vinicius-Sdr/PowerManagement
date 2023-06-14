@@ -22,7 +22,7 @@ public class AddressServiceImpl implements AddressService {
     @Override
     public ResponseEntity createAddress(AddressDTO addressDTO) {
 
-    Address address = mapper.addressDTOtoEntity(addressDTO);
+        Address address = mapper.addressDTOtoEntity(addressDTO);
 
         return ResponseEntity.ok().body(addressRepository.save(address));
     }
@@ -46,6 +46,22 @@ public class AddressServiceImpl implements AddressService {
 
     @Override
     public ResponseEntity editAddress(Integer id, AddressDTO addressDTO) {
-        return null;
+
+        addressRepository.findById(id)
+                .map(address -> {
+                    address.setCity(addressDTO.getCity());
+                    address.setState(addressDTO.getState());
+                    address.setStreet(addressDTO.getStreet());
+                    address.setNumber(addressDTO.getNumber());
+                    address.setComplement(addressDTO.getComplement());
+                    address.setNeighborhood(addressDTO.getNeighborhood());
+                    return ResponseEntity.ok().body(address);
+                })
+                .orElseGet(() -> {
+                    Address address = mapper.addressDTOtoEntity(addressDTO);
+                    return ResponseEntity.ok().body(addressRepository.save(address));
+                });
+
+        return ResponseEntity.badRequest().body("Informações inválidas");
     }
 }
