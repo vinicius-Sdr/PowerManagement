@@ -14,4 +14,8 @@ public interface UserService {
     ResponseEntity deleteUser(Integer id);
 
     ResponseEntity editUser(Integer id, UserDTO userDTO);
+
+    ResponseEntity editAddress(Integer id, UserDTO userDTO);
+
+    ResponseEntity deleteAddress(Integer id);
 }
