@@ -3,12 +3,15 @@ package com.alura.powermanagement.service.impl;
 import com.alura.powermanagement.mapper.AddressMapper;
 import com.alura.powermanagement.model.Address;
 import com.alura.powermanagement.model.DTO.AddressDTO;
+import com.alura.powermanagement.model.User;
 import com.alura.powermanagement.repository.AddressRepository;
 import com.alura.powermanagement.service.AddressService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 @Service
 public class AddressServiceImpl implements AddressService {
@@ -46,22 +49,14 @@ public class AddressServiceImpl implements AddressService {
 
     @Override
     public ResponseEntity editAddress(Integer id, AddressDTO addressDTO) {
+        Optional<Address> addressOptional = addressRepository.findById(id);
+        if (addressOptional.isPresent()) {
+            Address address = mapper.addressDTOtoEntity(addressDTO);
+            address.setId(id);
+            return ResponseEntity.ok().body(addressRepository.save(address));
+        }else{
+        return ResponseEntity.badRequest().body("Numero de id inválido");
+        }
 
-        addressRepository.findById(id)
-                .map(address -> {
-                    address.setCity(addressDTO.getCity());
-                    address.setState(addressDTO.getState());
-                    address.setStreet(addressDTO.getStreet());
-                    address.setNumber(addressDTO.getNumber());
-                    address.setComplement(addressDTO.getComplement());
-                    address.setNeighborhood(addressDTO.getNeighborhood());
-                    return ResponseEntity.ok().body(address);
-                })
-                .orElseGet(() -> {
-                    Address address = mapper.addressDTOtoEntity(addressDTO);
-                    return ResponseEntity.ok().body(addressRepository.save(address));
-                });
-
-        return ResponseEntity.badRequest().body("Informações inválidas");
     }
 }

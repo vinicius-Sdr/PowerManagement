@@ -35,12 +35,10 @@ public class AddressController {
     public ResponseEntity editAddress(@PathVariable(name = "id") @NotBlank Integer id,
             @Valid @RequestBody AddressDTO addressDTO ){
 
-
-
         return addressService.editAddress(id, addressDTO);
     }
 
-    @DeleteMapping
+    @DeleteMapping("/{id}")
     public ResponseEntity deleteAddress(@PathVariable Integer id){
 
       return addressService.deleteAddress(id);
