@@ -43,10 +43,12 @@ public class AddressServiceImpl implements AddressService {
 
     @Override
     public ResponseEntity deleteAddress(Integer id) {
-        addressRepository.deleteById(id);
-        return ResponseEntity.status(HttpStatus.OK).body("Endereço deletado com sucesso!");
+        if (addressRepository.findById(id).isPresent()) {
+            addressRepository.deleteById(id);
+            return ResponseEntity.status(HttpStatus.OK).body("Eletronico deletado com sucesso!");
+        }
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Número de Id inválido");
     }
-
     @Override
     public ResponseEntity editAddress(Integer id, AddressDTO addressDTO) {
         Optional<Address> addressOptional = addressRepository.findById(id);

@@ -1,13 +1,17 @@
 package com.alura.powermanagement.service.impl;
 
 import com.alura.powermanagement.mapper.UserMapper;
+import com.alura.powermanagement.model.Appliance;
 import com.alura.powermanagement.model.DTO.UserDTO;
 import com.alura.powermanagement.model.User;
 import com.alura.powermanagement.repository.UserRepository;
 import com.alura.powermanagement.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -38,22 +42,24 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public ResponseEntity deleteUser(Integer id) {
-        return null;
+        if (userRepository.findById(id).isPresent()) {
+            userRepository.deleteById(id);
+            return ResponseEntity.status(HttpStatus.OK).body("Eletronico deletado com sucesso!");
+        }
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Número de Id inválido");
     }
 
     @Override
     public ResponseEntity editUser(Integer id, UserDTO userDTO) {
-        return null;
+        Optional<User> userOptional = userRepository.findById(id);
+        if (userOptional.isPresent()) {
+            User user = mapper.userDTOtoEntity(userDTO);
+            user.setId(id);
+            return ResponseEntity.ok().body(userRepository.save(user));
+        } else {
+            return ResponseEntity.badRequest().body("Numero de id inválido");
+        }
     }
 
-    @Override
-    public ResponseEntity editAddress(Integer id, UserDTO userDTO) {
-        return null;
-    }
-
-    @Override
-    public ResponseEntity deleteAddress(Integer id) {
-        return null;
-    }
 
 }

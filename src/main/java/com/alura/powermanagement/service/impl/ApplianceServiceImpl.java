@@ -36,14 +36,17 @@ public class ApplianceServiceImpl implements ApplianceService {
 
     @Override
     public ResponseEntity deleteAppliance(Integer id) {
-        repository.deleteById(id);
-        return ResponseEntity.status(HttpStatus.OK).body("Eletronico deletado com sucesso!");
+        if (repository.findById(id).isPresent()) {
+            repository.deleteById(id);
+            return ResponseEntity.status(HttpStatus.OK).body("Eletronico deletado com sucesso!");
+        }
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Número de Id inválido");
     }
 
     @Override
     public ResponseEntity editAppliance(Integer id, ApplianceDTO applianceDTO) {
-        Optional<Appliance> addressOptional = repository.findById(id);
-        if (addressOptional.isPresent()) {
+        Optional<Appliance> applianceOptional = repository.findById(id);
+        if (applianceOptional.isPresent()) {
             Appliance appliance = mapper.applianceDTOtoEntity(applianceDTO);
             appliance.setId(id);
             return ResponseEntity.ok().body(repository.save(appliance));

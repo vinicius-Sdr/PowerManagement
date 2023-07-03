@@ -10,36 +10,36 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/Appliance")
+@RequestMapping("/appliance")
 public class ApplianceController {
 
     @Autowired
     private ApplianceService service;
 
     @PostMapping
-    public ResponseEntity saveAddress(@Valid @RequestBody ApplianceDTO applianceDTO) {
+    public ResponseEntity saveAppliance(@Valid @RequestBody ApplianceDTO applianceDTO) {
         return service.createAppliance(applianceDTO);
     }
 
     @GetMapping
-    public ResponseEntity getAllAddress() {
+    public ResponseEntity getAllAppliance() {
         return service.getAllAppliances();
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity getAddressById(@PathVariable(name="id") @NotBlank Integer id){
+    public ResponseEntity getApplianceById(@PathVariable(name="id") @NotBlank Integer id){
         return service.findById(id);
 
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity editAddress(@PathVariable(name = "id") @NotBlank Integer id,
+    public ResponseEntity editAppliance(@PathVariable(name = "id") @NotBlank Integer id,
                                       @Valid @RequestBody ApplianceDTO applianceDTO ){
         return service.editAppliance(id, applianceDTO);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity deleteAddress(@PathVariable Integer id){
+    public ResponseEntity deleteAppliance(@PathVariable Integer id){
 
         return service.deleteAppliance(id);
     }

@@ -1,6 +1,8 @@
 package com.alura.powermanagement.model.DTO;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -14,6 +16,6 @@ public class ApplianceDTO {
     @NotBlank(message = "Aniversario é um campo obrigatório e não pode estar em branco")
     private String model;
 
-    @NotBlank(message = "Aniversario é um campo obrigatório e não pode estar em branco")
+    @NotNull(message = "Aniversario é um campo obrigatório e não pode estar em branco")
     private Double potency;
 }

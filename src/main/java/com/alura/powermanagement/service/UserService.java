@@ -15,7 +15,4 @@ public interface UserService {
 
     ResponseEntity editUser(Integer id, UserDTO userDTO);
 
-    ResponseEntity editAddress(Integer id, UserDTO userDTO);
-
-    ResponseEntity deleteAddress(Integer id);
 }

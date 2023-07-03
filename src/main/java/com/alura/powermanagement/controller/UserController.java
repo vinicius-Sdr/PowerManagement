@@ -1,6 +1,5 @@
 package com.alura.powermanagement.controller;
 
-import com.alura.powermanagement.model.DTO.AddressDTO;
 import com.alura.powermanagement.model.DTO.UserDTO;
 import com.alura.powermanagement.service.UserService;
 import jakarta.validation.Valid;
@@ -23,7 +22,6 @@ public class UserController {
 
     @GetMapping
     public ResponseEntity getAllUsers() {
-
         return userService.getAllUsers();
     }
     @GetMapping("/{id}")
@@ -32,16 +30,15 @@ public class UserController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity editAddress(@PathVariable(name = "id") @NotBlank Integer id,
+    public ResponseEntity editUser(@PathVariable(name = "id") @NotBlank Integer id,
                                       @Valid @RequestBody UserDTO userDTO ){
 
-        return userService.editAddress(id, userDTO);
+        return userService.editUser(id, userDTO);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity deleteAddress(@PathVariable Integer id){
-
-        return userService.deleteAddress(id);
+    public ResponseEntity deleteUser(@PathVariable Integer id){
+        return userService.deleteUser(id);
     }
 
 }
