@@ -27,7 +27,7 @@ public class AddressServiceImpl implements AddressService {
 
         Address address = mapper.addressDTOtoEntity(addressDTO);
 
-        return ResponseEntity.ok().body(addressRepository.save(address));
+        return ResponseEntity.status(HttpStatus.CREATED).body(addressRepository.save(address));
     }
 
     @Override
