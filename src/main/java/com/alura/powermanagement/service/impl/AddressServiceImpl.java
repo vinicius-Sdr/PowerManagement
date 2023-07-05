@@ -45,7 +45,7 @@ public class AddressServiceImpl implements AddressService {
     public ResponseEntity deleteAddress(Integer id) {
         if (addressRepository.findById(id).isPresent()) {
             addressRepository.deleteById(id);
-            return ResponseEntity.status(HttpStatus.OK).body("Eletronico deletado com sucesso!");
+            return ResponseEntity.status(HttpStatus.OK).body("Endreço deletado com sucesso!");
         }
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Número de Id inválido");
     }
