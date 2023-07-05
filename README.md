@@ -196,7 +196,7 @@ _________________________________________________
 ## End-point: Appliance
 Gerenciamento de Eletronicos.
 
-#### http://localhost:8080/Appliance
+#### http://localhost:8080/appliance
 
 
 ### Methods: 
@@ -205,7 +205,7 @@ Gerenciamento de Eletronicos.
 ## POST - Create new Appliance
 
 >```
->http://localhost:8080/Appliance
+>http://localhost:8080/appliance
 >```
 
 #### Body (**json**)
@@ -226,7 +226,7 @@ Gerenciamento de Eletronicos.
 
 #### Example Request
 >```
->http://localhost:8080/Appliance
+>http://localhost:8080/appliance
 >```
 
 
@@ -253,7 +253,7 @@ Gerenciamento de Eletronicos.
 
 ## GET - Find By Id
 >```
->http://localhost:8080/Appliance/1
+>http://localhost:8080/appliance/1
 >```
 
 #### Example Response
@@ -271,7 +271,7 @@ Gerenciamento de Eletronicos.
 
 ## DELETE - Delete By Id
 >```
->http://localhost:8080/Appliance/1
+>http://localhost:8080/appliance/1
 >```
 
 #### Example Response
