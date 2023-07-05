@@ -25,7 +25,7 @@ public class ApplianceServiceImpl implements ApplianceService {
     public ResponseEntity createAppliance(ApplianceDTO applianceDTO) {
         Appliance appliance = mapper.applianceDTOtoEntity(applianceDTO);
 
-        return ResponseEntity.ok().body(repository.save(appliance));
+        return ResponseEntity.status(HttpStatus.CREATED).body(repository.save(appliance));
 
     }
 
