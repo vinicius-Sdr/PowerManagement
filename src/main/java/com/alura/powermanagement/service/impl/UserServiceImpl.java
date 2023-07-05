@@ -44,7 +44,7 @@ public class UserServiceImpl implements UserService {
     public ResponseEntity deleteUser(Integer id) {
         if (userRepository.findById(id).isPresent()) {
             userRepository.deleteById(id);
-            return ResponseEntity.status(HttpStatus.OK).body("Eletronico deletado com sucesso!");
+            return ResponseEntity.status(HttpStatus.OK).body("Usuário deletado com sucesso!");
         }
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Número de Id inválido");
     }
@@ -57,7 +57,7 @@ public class UserServiceImpl implements UserService {
             user.setId(id);
             return ResponseEntity.ok().body(userRepository.save(user));
         } else {
-            return ResponseEntity.badRequest().body("Numero de id inválido");
+            return ResponseEntity.badRequest().body("Número de id inválido");
         }
     }
 
