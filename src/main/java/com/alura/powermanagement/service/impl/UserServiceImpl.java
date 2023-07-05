@@ -27,7 +27,7 @@ public class UserServiceImpl implements UserService {
 
     User user = mapper.userDTOtoEntity(userDTO);
 
-        return ResponseEntity.ok().body(userRepository.save(user));
+        return ResponseEntity.status(HttpStatus.CREATED).body(userRepository.save(user));
     }
 
     @Override
