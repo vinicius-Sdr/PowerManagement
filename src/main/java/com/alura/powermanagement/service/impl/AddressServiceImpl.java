@@ -27,7 +27,7 @@ public class AddressServiceImpl implements AddressService {
 
         Address address = mapper.addressDTOtoEntity(addressDTO);
 
-        return ResponseEntity.ok().body(addressRepository.save(address));
+        return ResponseEntity.status(HttpStatus.CREATED).body(addressRepository.save(address));
     }
 
     @Override
@@ -45,7 +45,7 @@ public class AddressServiceImpl implements AddressService {
     public ResponseEntity deleteAddress(Integer id) {
         if (addressRepository.findById(id).isPresent()) {
             addressRepository.deleteById(id);
-            return ResponseEntity.status(HttpStatus.OK).body("Eletronico deletado com sucesso!");
+            return ResponseEntity.status(HttpStatus.OK).body("Endereço deletado com sucesso!");
         }
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Número de Id inválido");
     }

@@ -10,12 +10,12 @@ import lombok.Setter;
 @Setter
 public class ApplianceDTO {
 
-    @NotBlank(message = "Aniversario é um campo obrigatório e não pode estar em branco")
+    @NotBlank(message = "Nome é um campo obrigatório e não pode estar em branco")
     private String name;
 
-    @NotBlank(message = "Aniversario é um campo obrigatório e não pode estar em branco")
+    @NotBlank(message = "Modelo é um campo obrigatório e não pode estar em branco")
     private String model;
 
-    @NotNull(message = "Aniversario é um campo obrigatório e não pode estar em branco")
+    @NotNull(message = "Potencia é um campo obrigatório e não pode estar em branco")
     private Double potency;
 }
