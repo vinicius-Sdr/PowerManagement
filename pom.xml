@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.alura</groupId>
 	<artifactId>PowerManagement</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.1</version>
 	<name>PowerManagement</name>
 	<description>PowerManagement</description>
 	<properties>
@@ -50,8 +50,9 @@
 		</dependency>
 
 		<dependency>
-			<groupId>com.h2database</groupId>
-			<artifactId>h2</artifactId>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<scope>runtime</scope>
 		</dependency>
 
 		<dependency>

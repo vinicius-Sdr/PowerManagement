@@ -1,0 +1,16 @@
+version: "1"
+services:
+  db:
+    image: postgres:latest
+    restart: always
+    container_name: power_management
+    volumes:
+      - db_data:/var/lib/postgres
+    environment:
+      - POSTGRES_DB=powermanagement
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - "5432:5432"
+volumes:
+  db_data:
