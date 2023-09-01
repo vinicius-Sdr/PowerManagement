@@ -1,10 +1,11 @@
 package com.alura.powermanagement.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import jakarta.persistence.*;
 import lombok.Data;
+
+import java.util.List;
 
 @Entity
 @Data
@@ -25,4 +26,13 @@ public class Address {
     private String state;
 
     private String complement;
+
+    @OneToMany(mappedBy = "address",fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JsonManagedReference
+    private List<Person> person;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "user_id")
+    @JsonBackReference
+    private User user;
 }

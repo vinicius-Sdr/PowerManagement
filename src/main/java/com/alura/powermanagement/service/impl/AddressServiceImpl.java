@@ -6,6 +6,7 @@ import com.alura.powermanagement.model.DTO.AddressDTO;
 import com.alura.powermanagement.model.User;
 import com.alura.powermanagement.repository.AddressRepository;
 import com.alura.powermanagement.service.AddressService;
+import com.alura.powermanagement.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,10 +23,17 @@ public class AddressServiceImpl implements AddressService {
     @Autowired
     private AddressRepository addressRepository;
 
+    @Autowired
+    private UserService userService;
+
+
     @Override
-    public ResponseEntity createAddress(AddressDTO addressDTO) {
+    public ResponseEntity createAddress(AddressDTO addressDTO, int userId) {
+
+        User user = userService.findById(userId);
 
         Address address = mapper.addressDTOtoEntity(addressDTO);
+        address.setUser(user);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(addressRepository.save(address));
     }

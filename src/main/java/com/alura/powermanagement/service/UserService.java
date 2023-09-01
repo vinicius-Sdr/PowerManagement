@@ -1,15 +1,18 @@
 package com.alura.powermanagement.service;
 
 import com.alura.powermanagement.model.DTO.UserDTO;
+import com.alura.powermanagement.model.User;
 import org.springframework.http.ResponseEntity;
+
+import java.util.List;
 
 public interface UserService {
 
     ResponseEntity createUser(UserDTO userDTO);
 
-    ResponseEntity getAllUsers();
+    List<User> getAllUsers();
 
-    ResponseEntity findById(Integer id);
+    User findById(Integer id);
 
     ResponseEntity deleteUser(Integer id);
 

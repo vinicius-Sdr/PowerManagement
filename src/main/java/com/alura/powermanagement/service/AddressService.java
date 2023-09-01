@@ -5,7 +5,7 @@ import org.springframework.http.ResponseEntity;
 
 public interface AddressService {
 
-    ResponseEntity createAddress(AddressDTO addressDTO);
+    ResponseEntity createAddress(AddressDTO addressDTO, int userId);
 
     ResponseEntity getAllAddress();
 

@@ -1,0 +1,19 @@
+package com.alura.powermanagement.service;
+
+import com.alura.powermanagement.model.DTO.PersonDTO;
+import com.alura.powermanagement.model.DTO.UserDTO;
+import com.alura.powermanagement.model.Person;
+import org.springframework.http.ResponseEntity;
+
+public interface PersonService {
+
+    ResponseEntity createPerson(PersonDTO personDTO, int userId);
+
+    ResponseEntity getAllPersons();
+
+    Person findById(Integer id);
+
+    ResponseEntity deletePerson(Integer id);
+
+    ResponseEntity editPerson(Integer id, PersonDTO personDTO);
+}
