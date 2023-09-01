@@ -4,6 +4,7 @@ import com.alura.powermanagement.mapper.PersonMapper;
 import com.alura.powermanagement.model.DTO.PersonDTO;
 import com.alura.powermanagement.model.Person;
 import com.alura.powermanagement.repository.PersonRepository;
+import com.alura.powermanagement.service.AddressService;
 import com.alura.powermanagement.service.PersonService;
 import com.alura.powermanagement.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,11 +26,16 @@ public class PersonServiceImpl implements PersonService {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private AddressService addressService;
+
     @Override
-    public ResponseEntity createPerson(PersonDTO personDTO, int userId) {
+    public ResponseEntity createPerson(PersonDTO personDTO) {
 
         Person person = mapper.personDTOtoEntity(personDTO);
-        person.setUser(userService.findById(userId));
+        person.setUser(userService.findById(personDTO.getUserId()));
+        person.setAddress(addressService.findById(personDTO.getAddressId()));
+
 
         return ResponseEntity.status(HttpStatus.CREATED).body(personRepository.save(person));
 
@@ -48,7 +54,8 @@ public class PersonServiceImpl implements PersonService {
     @Override
     public ResponseEntity deletePerson(Integer id) {
 
-        if (personRepository.findById(id).isPresent()) {
+        Optional<Person> person = personRepository.findById(id);
+        if (person.isPresent()) {
             personRepository.deleteById(id);
             return ResponseEntity.status(HttpStatus.OK).body("Usuário deletado com sucesso!");
         }

@@ -1,6 +1,7 @@
 package com.alura.powermanagement.model.DTO;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -24,5 +25,8 @@ public class AddressDTO {
     private String state;
 
     private String complement;
+
+    @NotNull(message = "Id do usuário é um campo obrigatório e não pode estar em branco")
+    private int userId;
 
 }

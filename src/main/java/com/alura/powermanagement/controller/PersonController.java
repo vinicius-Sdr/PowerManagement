@@ -7,6 +7,7 @@ import com.alura.powermanagement.service.UserService;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,29 +20,30 @@ public class PersonController {
 
     @PostMapping
     public ResponseEntity savePerson(@Valid @RequestBody PersonDTO personDTO) {
-        //return userService.createUser(userDTO);
-        return null;
+        return personService.createPerson(personDTO);
     }
 
     @GetMapping
     public ResponseEntity getAllUsers() {
         return personService.getAllPersons();
     }
+
     @GetMapping("/{id}")
     public ResponseEntity getUserById(@PathVariable(name = "id") @NotBlank Integer id) {
-        return personService.findById(id);
+        return ResponseEntity.ok().body(personService.findById(id));
     }
 
     @PutMapping("/{id}")
     public ResponseEntity editUser(@PathVariable(name = "id") @NotBlank Integer id,
-                                   @Valid @RequestBody PersonDTO personDTO ){
+                                   @Valid @RequestBody PersonDTO personDTO) {
 
-        //return userService.editUser(id, userDTO);
-        return null;
+        return personService.editPerson(id, personDTO);
+
     }
 
+
     @DeleteMapping("/{id}")
-    public ResponseEntity deleteUser(@PathVariable Integer id){
+    public ResponseEntity deleteUser(@PathVariable Integer id) {
         return personService.deletePerson(id);
     }
 

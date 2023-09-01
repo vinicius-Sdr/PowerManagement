@@ -28,9 +28,9 @@ public class AddressServiceImpl implements AddressService {
 
 
     @Override
-    public ResponseEntity createAddress(AddressDTO addressDTO, int userId) {
+    public ResponseEntity createAddress(AddressDTO addressDTO) {
 
-        User user = userService.findById(userId);
+        User user = userService.findById(addressDTO.getUserId());
 
         Address address = mapper.addressDTOtoEntity(addressDTO);
         address.setUser(user);
@@ -44,9 +44,9 @@ public class AddressServiceImpl implements AddressService {
     }
 
     @Override
-    public ResponseEntity findById(Integer id) {
+    public Address findById(Integer id) {
 
-        return ResponseEntity.ok().body(addressRepository.findById(id));
+        return addressRepository.findById(id).get();
     }
 
     @Override

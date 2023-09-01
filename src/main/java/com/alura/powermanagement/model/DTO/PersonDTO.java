@@ -1,10 +1,9 @@
 package com.alura.powermanagement.model.DTO;
 
-import com.alura.powermanagement.model.Address;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -18,6 +17,7 @@ public class PersonDTO {
     private String name;
 
     @NotBlank(message = "Aniversario é um campo obrigatório e não pode estar em branco")
+//    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="dd/MM/yyyy")
     private String birthDate;
 
     @NotBlank(message = "Genero é um campo obrigatório e não pode estar em branco")
@@ -26,6 +26,10 @@ public class PersonDTO {
     @NotBlank(message = "Parentesco é um campo obrigatório e não pode estar em branco")
     private String kinship;
 
-    private Address address;
+    @NotNull(message = "Id do endereço é um campo obrigatório e não pode estar em branco")
+    private int addressId;
+
+    @NotNull(message = "Id do usuário é um campo obrigatório e não pode estar em branco")
+    private int userId;
 
 }

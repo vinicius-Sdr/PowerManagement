@@ -3,6 +3,7 @@ package com.alura.powermanagement.model;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Data;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 
@@ -28,11 +29,10 @@ public class Person {
     @JsonBackReference
     private Address address;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne
     @JoinColumn(name = "user_id")
     @JsonBackReference
     private User user;
-
 
 
 }
