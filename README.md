@@ -282,3 +282,101 @@ Gerenciamento de Eletronicos.
 }
 
 ```
+
+_________________________________________________
+
+
+## End-point: Person
+Gerenciamento de pessoas.
+
+#### http://localhost:8080/person
+
+
+### Methods: 
+
+
+## POST - Create new Person
+
+>```
+>http://localhost:8080/person
+>```
+
+#### Body (**json**)
+```
+{
+    "name": "Bruno",
+    "birthDate": "10/12/2022",
+    "gender": "male",
+    "kinship": "irmão",
+    "addressId": 3,
+    "userId": 4
+}
+```
+#### Response
+```
+{
+    "id": 3,
+    "name": "Bruno",
+    "kinship": "irmão",
+    "gender": "male",
+    "birthDate": "2022-12-10T03:00:00.000+00:00"
+}
+```
+⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃
+
+## GET - List all persons
+
+#### Example Request
+>```
+>http://localhost:8080/person
+>```
+
+
+#### Example Response
+```
+[
+    {
+        "id": 3,
+        "name": "Bruno",
+        "kinship": "irmão",
+        "gender": "male",
+        "birthDate": "2022-12-10T03:00:00.000+00:00"
+    }
+]
+```
+
+
+⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃
+
+## GET - Find By Id
+>```
+>http://localhost:8080/person/1
+>```
+
+#### Example Response
+```
+
+{
+    "id": 1,
+    "name": "bruno",
+    "kinship": "irmao ",
+    "gender": "male",
+    "birthDate": 20-10-2001
+}
+
+```
+⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃
+
+## DELETE - Delete By Id
+>```
+>http://localhost:8080/person/1
+>```
+
+#### Example Response
+```
+
+{
+    "Pessoa deletado com sucesso!"
+}
+
+```
