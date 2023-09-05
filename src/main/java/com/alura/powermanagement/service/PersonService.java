@@ -15,4 +15,6 @@ public interface PersonService {
     ResponseEntity deletePerson(Integer id);
 
     ResponseEntity editPerson(Integer id, PersonDTO personDTO);
+
+    ResponseEntity getPersons(String name, String kinship, String gender);
 }

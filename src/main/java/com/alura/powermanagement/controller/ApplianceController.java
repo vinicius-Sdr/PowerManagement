@@ -14,34 +14,40 @@ import org.springframework.web.bind.annotation.*;
 public class ApplianceController {
 
     @Autowired
-    private ApplianceService service;
+    private ApplianceService applianceServiceservice;
 
     @PostMapping
     public ResponseEntity saveAppliance(@Valid @RequestBody ApplianceDTO applianceDTO) {
-        return service.createAppliance(applianceDTO);
+        return applianceServiceservice.createAppliance(applianceDTO);
     }
 
-    @GetMapping
-    public ResponseEntity getAllAppliance() {
-        return service.getAllAppliances();
-    }
+//    @GetMapping
+//    public ResponseEntity getAllAppliance() {
+//        return applianceServiceservice.getAllAppliances();
+//    }
 
     @GetMapping("/{id}")
     public ResponseEntity getApplianceById(@PathVariable(name="id") @NotBlank Integer id){
-        return service.findById(id);
+        return applianceServiceservice.findById(id);
 
     }
 
     @PutMapping("/{id}")
     public ResponseEntity editAppliance(@PathVariable(name = "id") @NotBlank Integer id,
                                       @Valid @RequestBody ApplianceDTO applianceDTO ){
-        return service.editAppliance(id, applianceDTO);
+        return applianceServiceservice.editAppliance(id, applianceDTO);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity deleteAppliance(@PathVariable Integer id){
 
-        return service.deleteAppliance(id);
+        return applianceServiceservice.deleteAppliance(id);
+    }
+
+    @GetMapping
+    public ResponseEntity getAddresses(@Valid @RequestParam(required = false) String name, @Valid @RequestParam(required = false) String model, @Valid @RequestParam(required = false) double potency) {
+
+        return applianceServiceservice.getAppliances(name, model, potency);
     }
 
 

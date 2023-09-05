@@ -20,28 +20,33 @@ public class AddressController {
         return addressService.createAddress(addressDTO);
     }
 
+//    @GetMapping
+//    public ResponseEntity getAllAddress() {
+//        return addressService.getAllAddress();
+//    }
+
     @GetMapping
-    public ResponseEntity getAllAddress() {
-        return addressService.getAllAddress();
+    public ResponseEntity getAddresses(@Valid @RequestParam(required = false) String street, @Valid @RequestParam(required = false) String neighborhood, @Valid @RequestParam(required = false) String city, @Valid @RequestParam(required = false) String state) {
+
+        return ResponseEntity.ok().body(addressService.getAllAddress(street, neighborhood, city, state));
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity getAddressById(@PathVariable(name="id") @NotBlank Integer id){
+    public ResponseEntity getAddressById(@PathVariable(name = "id") @NotBlank Integer id) {
         return ResponseEntity.ok().body(addressService.findById(id));
 
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity editAddress(@PathVariable(name = "id") @NotBlank Integer id,
-            @Valid @RequestBody AddressDTO addressDTO ){
+    public ResponseEntity editAddress(@PathVariable(name = "id") @NotBlank Integer id, @Valid @RequestBody AddressDTO addressDTO) {
 
         return addressService.editAddress(id, addressDTO);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity deleteAddress(@PathVariable Integer id){
+    public ResponseEntity deleteAddress(@PathVariable Integer id) {
 
-      return addressService.deleteAddress(id);
+        return addressService.deleteAddress(id);
     }
 
 

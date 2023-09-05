@@ -7,11 +7,13 @@ import com.alura.powermanagement.model.User;
 import com.alura.powermanagement.repository.AddressRepository;
 import com.alura.powermanagement.service.AddressService;
 import com.alura.powermanagement.service.UserService;
+import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -68,5 +70,17 @@ public class AddressServiceImpl implements AddressService {
         return ResponseEntity.badRequest().body("Numero de id inválido");
         }
 
+    }
+
+    @Override
+    public ResponseEntity getAllAddress(String street, String neighborhood, String city, String state) {
+
+        List<Address> addressList = addressRepository.findByStreetAndNeighborhoodAndCityAndState(street, neighborhood, city, state);
+
+        if(!addressList.isEmpty()){
+            return ResponseEntity.ok().body(addressList);
+        }else{
+            return ResponseEntity.ok(HttpStatus.NOT_FOUND);
+        }
     }
 }

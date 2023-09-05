@@ -13,4 +13,6 @@ public interface ApplianceService {
     ResponseEntity editAppliance(Integer id, ApplianceDTO addressDTO);
 
     ResponseEntity findById(Integer id);
+
+    ResponseEntity getAppliances(String name, String model, double potency);
 }

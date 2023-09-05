@@ -1,6 +1,7 @@
 package com.alura.powermanagement.service.impl;
 
 import com.alura.powermanagement.mapper.PersonMapper;
+import com.alura.powermanagement.model.Address;
 import com.alura.powermanagement.model.DTO.PersonDTO;
 import com.alura.powermanagement.model.Person;
 import com.alura.powermanagement.repository.PersonRepository;
@@ -12,6 +13,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -75,5 +77,16 @@ public class PersonServiceImpl implements PersonService {
             return ResponseEntity.badRequest().body("Número de id inválido");
         }
 
+    }
+
+    @Override
+    public ResponseEntity getPersons(String name, String kinship, String gender) {
+        List<Person> personList = personRepository.findByNameAndKinshipAndGender(name, kinship, gender);
+
+        if(!personList.isEmpty()){
+            return ResponseEntity.ok().body(personList);
+        }else{
+            return ResponseEntity.ok(HttpStatus.NOT_FOUND);
+        }
     }
 }

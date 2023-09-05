@@ -23,10 +23,10 @@ public class PersonController {
         return personService.createPerson(personDTO);
     }
 
-    @GetMapping
-    public ResponseEntity getAllUsers() {
-        return personService.getAllPersons();
-    }
+//    @GetMapping
+//    public ResponseEntity getAllUsers() {
+//        return personService.getAllPersons();
+//    }
 
     @GetMapping("/{id}")
     public ResponseEntity getUserById(@PathVariable(name = "id") @NotBlank Integer id) {
@@ -45,6 +45,12 @@ public class PersonController {
     @DeleteMapping("/{id}")
     public ResponseEntity deleteUser(@PathVariable Integer id) {
         return personService.deletePerson(id);
+    }
+
+    @GetMapping
+    public ResponseEntity getAddresses(@Valid @RequestParam(required = false) String name, @Valid @RequestParam(required = false) String kinship, @Valid @RequestParam(required = false) String gender) {
+
+        return personService.getPersons(name, kinship, gender);
     }
 
 }
